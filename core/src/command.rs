@@ -16,7 +16,10 @@ use termcolor::ColorChoice;
 /// Subcommand of an application: derives or otherwise implements the `Options`
 /// trait, but also has a `call()` method which can be used to invoke the given
 /// (sub)command.
-pub trait Command: Debug + Options + Runnable {
+pub trait Command: Debug + Options + Runnable
+where
+    Self: Sized
+{
     /// Name of this program as a string
     fn name() -> &'static str;
 

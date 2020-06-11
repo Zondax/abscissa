@@ -42,6 +42,18 @@ impl<C> Options for Help<C>
 where
     C: Command,
 {
+    fn command(&self) -> Option<&dyn Options> {
+        None
+    }
+
+    fn command_list() -> Option<&'static str> {
+        None
+    }
+
+    fn command_usage(_command: &str) -> Option<&'static str> {
+        None
+    }
+
     fn parse<S: AsRef<str>>(parser: &mut Parser<'_, S>) -> Result<Self, Error> {
         let mut opts = vec![];
 
@@ -70,12 +82,12 @@ where
         ""
     }
 
-    fn command_usage(_command: &str) -> Option<&'static str> {
+    fn self_command_list(&self) -> Option<&'static str> {
         None
     }
 
-    fn command_list() -> Option<&'static str> {
-        None
+    fn self_usage(&self) -> &'static str {
+        ""
     }
 }
 
